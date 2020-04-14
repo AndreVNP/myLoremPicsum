@@ -72,9 +72,22 @@ Você pode acessar nosso quadro Kanban de atividades [Clicando aqui!](https://tr
 
 ## Sprints 
 
-### 1º Sprint
+### 1º Sprint | 14/04 - 12/05
 
-### 2º Sprint
+- Criação do repositório;
+- Criação do projeto;
+- Conectar o aplicativo com API;
+- Criar home page;
+
+### 2º Sprint | 12/05 - 09/06
+
+- Listar retorno da API nas páginas de feed de fotos;
+- Criar página de perfil;
+- Favoritar fotos;
+- Criar página de favoritos;
+- Fazer download de fotos;
+- Seguir amigos;
+- Criar sessão de comentários;
 
 # Equipe
 
