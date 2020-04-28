@@ -1,7 +1,0 @@
-{
-  "name": "myLoremPicsum",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}
