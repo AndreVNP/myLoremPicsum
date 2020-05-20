@@ -1,74 +1,92 @@
-import { Ionicons } from '@expo/vector-icons';
-import * as WebBrowser from 'expo-web-browser';
-import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { RectButton, ScrollView } from 'react-native-gesture-handler';
+import React, { Component } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity
+} from 'react-native';
 
-export default function LinksScreen() {
-  return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-      <OptionButton
-        icon="md-school"
-        label="Read the Expo documentation"
-        onPress={() => WebBrowser.openBrowserAsync('https://docs.expo.io')}
-      />
+export default class Profile extends Component {
 
-      <OptionButton
-        icon="md-compass"
-        label="Read the React Navigation documentation"
-        onPress={() => WebBrowser.openBrowserAsync('https://reactnavigation.org')}
-      />
-
-      <OptionButton
-        icon="ios-chatboxes"
-        label="Ask a question on the forums"
-        onPress={() => WebBrowser.openBrowserAsync('https://forums.expo.io')}
-        isLastOption
-      />
-    </ScrollView>
-  );
-}
-
-function OptionButton({ icon, label, onPress, isLastOption }) {
-  return (
-    <RectButton style={[styles.option, isLastOption && styles.lastOption]} onPress={onPress}>
-      <View style={{ flexDirection: 'row' }}>
-        <View style={styles.optionIconContainer}>
-          <Ionicons name={icon} size={22} color="rgba(0,0,0,0.35)" />
-        </View>
-        <View style={styles.optionTextContainer}>
-          <Text style={styles.optionText}>{label}</Text>
+  render() {
+    return (
+      <View style={styles.container}>
+          <View style={styles.header}></View>
+          <Image style={styles.avatar} source={{uri: 'https://mwmfma.bn.files.1drv.com/y4mVd4F4BSIYUAsyVEj8eFJR6xhEOUUYhv5oaLW0THSwyxN0qERts98e_e26aVT1HIvF01p4JugOQT6w9JyJHE2CFFIS2ho6y4tbc-9r3FD34nGcl4SmLu722VK6GV-yBJEiZTHC8MW3FNz9lI3BUhBGLcsVJ-64q-EwZ8O5XgxTJQcYHuNZSqF7erf2JNnivTHlxJEXn-9SBMIdbgkZXiygw?width=972&height=1296&cropmode=none'}}/>
+          <View style={styles.body}>
+            <View style={styles.bodyContent}>
+              <Text style={styles.name}>André Vicente</Text>
+              <Text style={styles.info}>Desenvolvimento e Inovação Tecnológica</Text>
+              <Text style={styles.description}>• Responsável por implantar a primeira parceria entre a GitHub e uma instituição de ensino não superior no Brasil.</Text>
+              
+              <TouchableOpacity style={styles.buttonContainer}>
+                <Text>Minhas fotos Favoritas</Text>  
+              </TouchableOpacity>              
+              <TouchableOpacity style={styles.buttonContainer}>
+                <Text>Fotógrafos Favoritos</Text> 
+              </TouchableOpacity>
+            </View>
         </View>
       </View>
-    </RectButton>
-  );
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-  container: {
+  header:{
+    backgroundColor: "#00BFFF",
+    height:200,
+  },
+  avatar: {
+    width: 130,
+    height: 130,
+    borderRadius: 63,
+    borderWidth: 4,
+    borderColor: "white",
+    marginBottom:10,
+    alignSelf:'center',
+    position: 'absolute',
+    marginTop:130
+  },
+  name:{
+    fontSize:22,
+    color:"#FFFFFF",
+    fontWeight:'600',
+  },
+  body:{
+    marginTop:40,
+  },
+  bodyContent: {
     flex: 1,
-    backgroundColor: '#fafafa',
+    alignItems: 'center',
+    padding:30,
   },
-  contentContainer: {
-    paddingTop: 15,
+  name:{
+    fontSize:28,
+    color: "#696969",
+    fontWeight: "600"
   },
-  optionIconContainer: {
-    marginRight: 12,
+  info:{
+    fontSize:16,
+    color: "#00BFFF",
+    marginTop:10
   },
-  option: {
-    backgroundColor: '#fdfdfd',
-    paddingHorizontal: 15,
-    paddingVertical: 15,
-    borderWidth: StyleSheet.hairlineWidth,
-    borderBottomWidth: 0,
-    borderColor: '#ededed',
+  description:{
+    fontSize:16,
+    color: "#696969",
+    marginTop:10,
+    textAlign: 'center'
   },
-  lastOption: {
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-  optionText: {
-    fontSize: 15,
-    alignSelf: 'flex-start',
-    marginTop: 1,
+  buttonContainer: {
+    marginTop:10,
+    height:45,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom:20,
+    width:250,
+    borderRadius:30,
+    backgroundColor: "#00BFFF",
   },
 });

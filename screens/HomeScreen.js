@@ -1,93 +1,86 @@
-import * as WebBrowser from 'expo-web-browser';
-import * as React from 'react';
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+//import * as WebBrowser from 'expo-web-browser';
+import React, { Component } from 'react';
+import { Image, Platform, StyleSheet, Text, FlatList, View } from 'react-native';
+import axios from "axios";
+import Icon from 'react-native-vector-icons/FontAwesome5';
+//import { ScrollView, } from 'react-native-gesture-handler';
 
-import { MonoText } from '../components/StyledText';
+//import { MonoText } from '../components/StyledText';
 
-export default function HomeScreen() {
-  return (
-    <View style={styles.container}>
-      <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-        <View style={styles.welcomeContainer}>
-          <Image
-            source={
-              __DEV__
-                ? require('../assets/images/robot-dev.png')
-                : require('../assets/images/robot-prod.png')
-            }
-            style={styles.welcomeImage}
-          />
-        </View>
+export default class HomeScreen extends React.Component {
 
-        <View style={styles.getStartedContainer}>
-          <DevelopmentModeNotice />
+  constructor() {
+    super();
+    this.state = {
+      data: []
+    }
+  } 
 
-          <Text style={styles.getStartedText}>Open up the code for this screen:</Text>
+  loadPhotos() {
+    axios.get("https://picsum.photos/v2/list?page=4&limit=10")
+   .then( res => {
+     if(res){
+      this.setState ({
+        data: res.data
+      })
+    }    
+    console.log('Retorno: ', this.state.data)
+    })  
+  }
 
-          <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-            <MonoText>screens/HomeScreen.js</MonoText>
+  componentDidMount(){
+    this.loadPhotos();
+  }
+
+  render(){
+    return (
+      <View style={styles.container}>
+        <FlatList 
+        data={this.state.data}
+        renderItem={({item}) => (
+          <View styles={styles.line}>
+              <View style={styles.info}>
+                <Text style={styles.author}>{item.author}</Text>
+              </View>
+              <Image
+              source={{ uri: item.download_url }}
+              style={styles.welcomeImage}/>
+
+              <View style={styles.footer}>
+                 <View style={styles.actions}>
+              <View style={styles.leftActions}>                
+                  <Icon name="heart" size={26} />                 
+              </View>
+
+              <View>                
+                  <Icon name="download" size={26} />                 
+              </View>
+            </View>
           </View>
+              
 
-          <Text style={styles.getStartedText}>
-            Change any of the text, save the file, and your app will automatically reload.
-          </Text>
-        </View>
-
-        <View style={styles.helpContainer}>
-          <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
-            <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
-
-      <View style={styles.tabBarInfoContainer}>
-        <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
-
-        <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-          <MonoText style={styles.codeHighlightText}>navigation/BottomTabNavigator.js</MonoText>
-        </View>
+          </View>
+          
+        )}
+          keyExtractor= {item => item.id}
+          
+        />
+      
       </View>
-    </View>
-  );
+    )
+  }
+
 }
+
+
+
 
 HomeScreen.navigationOptions = {
   header: null,
 };
 
-function DevelopmentModeNotice() {
-  if (__DEV__) {
-    const learnMoreButton = (
-      <Text onPress={handleLearnMorePress} style={styles.helpLinkText}>
-        Learn more
-      </Text>
-    );
 
-    return (
-      <Text style={styles.developmentModeText}>
-        Development mode is enabled: your app will be slower but you can use useful development
-        tools. {learnMoreButton}
-      </Text>
-    );
-  } else {
-    return (
-      <Text style={styles.developmentModeText}>
-        You are not in development mode: your app will run at full speed.
-      </Text>
-    );
-  }
-}
 
-function handleLearnMorePress() {
-  WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/workflow/development-mode/');
-}
-
-function handleHelpPress() {
-  WebBrowser.openBrowserAsync(
-    'https://docs.expo.io/versions/latest/get-started/create-a-new-app/#making-your-first-change'
-  );
-}
 
 const styles = StyleSheet.create({
   container: {
@@ -110,11 +103,11 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   welcomeImage: {
-    width: 100,
-    height: 80,
+    width: "100%",
+    height: 300,
     resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
+    marginTop: 0,
+    //marginLeft: -10,
   },
   getStartedContainer: {
     alignItems: 'center',
@@ -176,4 +169,51 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#2e78b7',
   },
+
+
+  feed: {
+    marginTop: 0,
+    backgroundcolor: 'black'  
+  },
+  post: {
+    position: 'relative',
+    marginVertical: 5,
+    zIndex: -1,
+    backgroundcolor: 'green'
+    },
+  postHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 15,
+    alignItems: 'center',
+    marginBottom: 15,
+  },
+  postOptions: {},
+  postLike: {},
+  userInfo: {},
+  author: {
+    fontSize: 14,
+    color: '#000',
+    fontWeight: 'bold'
+  },
+  picture_url: {
+    width: '100%',
+    height: 480,
+    resizeMode: 'contain'
+  },
+  footer: {
+    paddingHorizontal: 15
+  },
+  actions: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 15
+  },
+  action: {
+    marginRight: 8
+  },
+  leftActions: {
+    flexDirection: 'row'
+  },
+
 });
