@@ -1,8 +1,9 @@
 //import * as WebBrowser from 'expo-web-browser';
 import React, { Component } from 'react';
-import { Image, Platform, StyleSheet, Text, FlatList, View } from 'react-native';
+import { Image, Platform, StyleSheet, Text, FlatList, View, Linking } from 'react-native';
 import axios from "axios";
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 //import { ScrollView, } from 'react-native-gesture-handler';
 
 //import { MonoText } from '../components/StyledText';
@@ -48,12 +49,15 @@ export default class HomeScreen extends React.Component {
 
               <View style={styles.footer}>
                  <View style={styles.actions}>
-              <View style={styles.leftActions}>                
-                  <Icon name="heart" size={26} />                 
+              <View style={styles.leftActions}>
+                <TouchableOpacity>
+                  <Icon name="heart" size={26} /> 
+                </TouchableOpacity>                                  
               </View>
-
-              <View>                
-                  <Icon url="{{ uri: item.download_url }}" name="download" size={26} />                 
+              <View>
+                <TouchableOpacity>
+                  <Icon url="{{ uri: item.download_url }}" name="download" size={26} onPress={() => Linking.openURL(item.download_url)} />
+                </TouchableOpacity>                                  
               </View>
             </View>
           </View>
