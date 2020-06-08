@@ -53,12 +53,10 @@ export default class HomeScreen extends React.Component {
               </View>
 
               <View>                
-                  <Icon name="download" size={26} />                 
+                  <Icon url="{{ uri: item.download_url }}" name="download" size={26} />                 
               </View>
             </View>
           </View>
-              
-
           </View>
           
         )}
@@ -78,8 +76,6 @@ export default class HomeScreen extends React.Component {
 HomeScreen.navigationOptions = {
   header: null,
 };
-
-
 
 
 const styles = StyleSheet.create({
@@ -173,13 +169,13 @@ const styles = StyleSheet.create({
 
   feed: {
     marginTop: 0,
-    backgroundcolor: 'black'  
+    //backgroundcolor: 'black'  
   },
   post: {
     position: 'relative',
     marginVertical: 5,
     zIndex: -1,
-    backgroundcolor: 'green'
+    //backgroundcolor: 'green'
     },
   postHeader: {
     flexDirection: 'row',

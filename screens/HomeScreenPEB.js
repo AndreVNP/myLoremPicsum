@@ -173,13 +173,13 @@ const styles = StyleSheet.create({
 
   feed: {
     marginTop: 0,
-    backgroundcolor: 'black'  
+    //backgroundcolor: 'black'  
   },
   post: {
     position: 'relative',
     marginVertical: 5,
     zIndex: -1,
-    backgroundcolor: 'green'
+    //backgroundcolor: 'green'
     },
   postHeader: {
     flexDirection: 'row',
