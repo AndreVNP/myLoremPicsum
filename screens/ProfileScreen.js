@@ -7,9 +7,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-export default class Profile extends Component {
-
-  render() {
+export default function Profile({navigation}) {
     return (
       <View style={styles.container}>
           <View style={styles.header}></View>
@@ -20,7 +18,7 @@ export default class Profile extends Component {
               <Text style={styles.info}>Desenvolvimento e Inovação Tecnológica</Text>
               <Text style={styles.description}>• Responsável por implantar a primeira parceria entre a GitHub e uma instituição de ensino não superior no Brasil.</Text>
               
-              <TouchableOpacity style={styles.buttonContainer}>
+              <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('FavsScreen')}>
                 <Text>Minhas fotos Favoritas</Text>  
               </TouchableOpacity>              
               <TouchableOpacity style={styles.buttonContainer}>
@@ -30,7 +28,6 @@ export default class Profile extends Component {
         </View>
       </View>
     );
-  }
 }
 
 const styles = StyleSheet.create({
