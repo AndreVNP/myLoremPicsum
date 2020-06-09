@@ -36,6 +36,11 @@ export default class HomeScreen extends React.Component {
   render(){
     return (
       <View style={styles.container}>
+<View>
+    <Text style={styles.title}>Minhas fotos Favoritas
+    </Text>
+</View>
+
         <FlatList 
         data={this.state.data}
         renderItem={({item}) => (
@@ -47,20 +52,7 @@ export default class HomeScreen extends React.Component {
               source={{ uri: item.download_url }}
               style={styles.welcomeImage}/>
 
-              <View style={styles.footer}>
-                 <View style={styles.actions}>
-              <View style={styles.leftActions}>
-                <TouchableOpacity>
-                  <Icon name="heart" size={26} /> 
-                </TouchableOpacity>                                  
-              </View>
-              <View>
-                <TouchableOpacity>
-                  <Icon url="{{ uri: item.download_url }}" name="download" size={26} onPress={() => Linking.openURL(item.download_url)} />
-                </TouchableOpacity>                                  
-              </View>
-            </View>
-          </View>
+
           </View>
           
         )}
@@ -86,6 +78,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  title: {
+    fontSize: 30,
+    textAlign: 'center',
+    padding: '5%',
+    color: 'rgba(26,44,67, 1)',
   },
   developmentModeText: {
     marginBottom: 20,
