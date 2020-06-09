@@ -21,7 +21,7 @@ export default function Profile({navigation}) {
               <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('FavsScreen')}>
                 <Text>Minhas fotos Favoritas</Text>  
               </TouchableOpacity>              
-              <TouchableOpacity style={styles.buttonContainer}>
+              <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('FotografosScreen')}>
                 <Text>Fotógrafos Favoritos</Text> 
               </TouchableOpacity>
             </View>
