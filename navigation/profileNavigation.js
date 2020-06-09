@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import ProfileScreen from '../screens/ProfileScreen';
 import FavsScreen from '../screens/FavsScreen';
+import FotografosScreen from '../screens/FotografosScreen';
   
   const Stack = createStackNavigator();
   
@@ -14,6 +15,7 @@ import FavsScreen from '../screens/FavsScreen';
         <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="Profile Screen">
           <Stack.Screen name="Profile Screen" component={ProfileScreen} />
           <Stack.Screen name="FavsScreen" component={FavsScreen} />
+          <Stack.Screen name="FotografosScreen" component={FotografosScreen} />
         </Stack.Navigator>
 );
   }
