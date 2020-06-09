@@ -5,8 +5,8 @@ import axios from "axios";
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 //import { ScrollView, } from 'react-native-gesture-handler';
-
 //import { MonoText } from '../components/StyledText';
+import crudApi, {getAllFavPhotos} from '../services/crudApi';
 
 export default class HomeScreen extends React.Component {
 
@@ -17,21 +17,22 @@ export default class HomeScreen extends React.Component {
     }
   } 
 
-  loadPhotos() {
-    axios.get("https://picsum.photos/v2/list?page=4&limit=10")
-   .then( res => {
-     if(res){
-      this.setState ({
-        data: res.data
-      })
-    }    
-    console.log('Retorno: ', this.state.data)
-    })  
+  loadFavPhotos() {
+    axios.get("https://5edfe9f49ed06d001696d944.mockapi.io/favPhotos")
+    .then( res => {
+      if(res){
+       this.setState ({
+         data: res.data
+       })
+     }    
+     console.log('Retorno: ', this.state.data)
+     })  
+
   }
 
-  componentDidMount(){
-    this.loadPhotos();
-  }
+  componentDidMount() {
+    this.loadFavPhotos();
+}
 
   render(){
     return (
@@ -46,10 +47,10 @@ export default class HomeScreen extends React.Component {
         renderItem={({item}) => (
           <View styles={styles.line}>
               <View style={styles.info}>
-                <Text style={styles.author}>{item.author}</Text>
+                <Text style={styles.author}>{item.Author}</Text>
               </View>
               <Image
-              source={{ uri: item.download_url }}
+              source={{ uri: item.url }}
               style={styles.welcomeImage}/>
 
 

@@ -5,8 +5,9 @@ import axios from "axios";
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 //import { ScrollView, } from 'react-native-gesture-handler';
-
 //import { MonoText } from '../components/StyledText';
+
+import FavScreen, {loadFavPhotos} from './FavsScreen'
 
 export default class HomeScreen extends React.Component {
 
@@ -50,7 +51,7 @@ export default class HomeScreen extends React.Component {
               <View style={styles.footer}>
                  <View style={styles.actions}>
               <View style={styles.leftActions}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => like(item.download_url, item.author)}>
                   <Icon name="heart" size={26} /> 
                 </TouchableOpacity>                                  
               </View>
@@ -72,6 +73,20 @@ export default class HomeScreen extends React.Component {
     )
   }
 
+}
+
+function like(url, author){
+  console.warn(url, author);
+  axios.post("https://5edfe9f49ed06d001696d944.mockapi.io/favPhotos", {url: url, author: author})
+  .then( res => {
+    if(res){
+      //console.warn('Retorno: ', this.res)
+      this.setState ({
+        data: res.data
+      })
+      loadFavPhotos();
+   }    
+   }) 
 }
 
 
