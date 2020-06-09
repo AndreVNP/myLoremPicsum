@@ -13,19 +13,19 @@ export default class HomeScreen extends React.Component {
   constructor() {
     super();
     this.state = {
-      data: []
+      favdata: []
     }
   } 
 
   loadPhotos() {
-    axios.get("https://picsum.photos/v2/list?page=4&limit=10")
+    axios.get("https://5edfe9f49ed06d001696d944.mockapi.io/favPhotos")
    .then( res => {
      if(res){
       this.setState ({
         data: res.data
       })
     }    
-    console.log('Retorno: ', this.state.data)
+    console.log('Retorno favdata: ', this.state.data)
     })  
   }
 
@@ -45,7 +45,7 @@ export default class HomeScreen extends React.Component {
             <View styles={styles.line}>
               <View style={styles.info}>
                 <View style={styles.author}>
-                    <Text>{item.author}</Text>
+                    <Text>{item.Author}</Text>
                         <TouchableOpacity>
                             <Icon name="heart" size={26} /> 
                         </TouchableOpacity>
