@@ -45,7 +45,7 @@ export default class HomeScreen extends React.Component {
                 <Text style={styles.author}>{item.author}</Text>
               </View>
               <Image
-              source={{ uri: item.download_url }}
+              source={{ uri: item.download_url}}
               style={styles.welcomeImage}/>
 
               <View style={styles.footer}>

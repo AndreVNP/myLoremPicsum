@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   icon: {
-    alignItems: 'right'
+    alignItems: 'flex-end'
   },
   picture_url: {
     width: '100%',

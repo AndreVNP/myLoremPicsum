@@ -13,11 +13,13 @@ export default function Profile({navigation}) {
           <View style={styles.header}></View>
           <Image style={styles.avatar} source={{uri: 'https://mwmfma.bn.files.1drv.com/y4mVd4F4BSIYUAsyVEj8eFJR6xhEOUUYhv5oaLW0THSwyxN0qERts98e_e26aVT1HIvF01p4JugOQT6w9JyJHE2CFFIS2ho6y4tbc-9r3FD34nGcl4SmLu722VK6GV-yBJEiZTHC8MW3FNz9lI3BUhBGLcsVJ-64q-EwZ8O5XgxTJQcYHuNZSqF7erf2JNnivTHlxJEXn-9SBMIdbgkZXiygw?width=972&height=1296&cropmode=none'}}/>
           <View style={styles.body}>
-            <View style={styles.bodyContent}>
+            <View style={{padding: '10%'}}>
               <Text style={styles.name}>André Vicente</Text>
               <Text style={styles.info}>Desenvolvimento e Inovação Tecnológica</Text>
-              <Text style={styles.description}>• Responsável por implantar a primeira parceria entre a GitHub e uma instituição de ensino não superior no Brasil.</Text>
+              <Text style={styles.description}>• Responsável por implantar a primeira parceria entre a GitHub e uma instituição de ensino não superior no Brasil.</Text> 
+            </View>
               
+            <View style={styles.bodyContent}>
               <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('FavsScreen')}>
                 <Text>Minhas fotos Favoritas</Text>  
               </TouchableOpacity>              
@@ -48,8 +50,9 @@ const styles = StyleSheet.create({
   },
   name:{
     fontSize:22,
-    color:"#FFFFFF",
+    color:"#000",
     fontWeight:'600',
+    textAlign: 'center'
   },
   body:{
     marginTop:40,
@@ -59,15 +62,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding:30,
   },
-  name:{
-    fontSize:28,
-    color: "#696969",
-    fontWeight: "600"
-  },
+
   info:{
     fontSize:16,
     color: "#00BFFF",
-    marginTop:10
+    marginTop:10,
+    textAlign: 'center'
   },
   description:{
     fontSize:16,
